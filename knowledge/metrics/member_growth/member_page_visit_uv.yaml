@@ -1,0 +1,19 @@
+metric_id: member_growth.member_page_visit_uv
+display_name: 会员页访问UV
+domain: member_growth
+type: atomic
+status: active
+description: 统计周期内访问会员页的去重用户数
+source_table: dwd_user_event_di
+expression: count(distinct user_id)
+time_field: event_time
+filters:
+  - event_name = 'member_page_view'
+  - is_test = 0
+dimensions:
+  - channel_id
+  - app_id
+  - app_version
+  - city_level
+owner: growth_data_team
+version: 1.0.0

@@ -1,0 +1,37 @@
+table_name: dwd_member_order_di
+layer: dwd
+domain: member_growth
+description: 会员订单明细表，一行一笔会员订单
+grain: order_id
+partition_field: dt
+primary_time_field: pay_time
+owner: growth_data_team
+fields:
+  - name: dt
+    type: date
+    description: 分区日期
+    nullable: false
+  - name: order_id
+    type: varchar
+    description: 订单ID
+    nullable: false
+  - name: user_id
+    type: varchar
+    description: 用户ID
+    nullable: false
+  - name: order_status
+    type: varchar
+    description: 订单状态
+    enum: [CREATED, PAID, FINISHED, CANCELLED]
+  - name: pay_time
+    type: datetime
+    description: 支付时间
+  - name: pay_amount
+    type: decimal(18,2)
+    description: 支付金额
+common_filters:
+  valid_member_order:
+    - order_status in ('PAID', 'FINISHED')
+    - product_type = 'MEMBER'
+    - refund_status != 'FULL_REFUNDED'
+    - is_test = 0

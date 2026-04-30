@@ -1,0 +1,21 @@
+metric_id: member_growth.member_paid_user_count
+display_name: 会员支付用户数
+domain: member_growth
+type: atomic
+status: active
+description: 统计周期内成功支付会员订单的去重用户数
+source_table: dwd_member_order_di
+expression: count(distinct user_id)
+time_field: pay_time
+filters:
+  - order_status in ('PAID', 'FINISHED')
+  - product_type = 'MEMBER'
+  - refund_status != 'FULL_REFUNDED'
+  - is_test = 0
+dimensions:
+  - channel_id
+  - app_id
+  - app_version
+  - city_level
+owner: growth_data_team
+version: 1.0.0

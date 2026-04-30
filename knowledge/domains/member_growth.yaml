@@ -1,0 +1,21 @@
+domain_id: member_growth
+domain_name: 会员增长域
+description: 负责会员拉新、转化、复购、续费相关分析
+entities:
+  - user
+  - member
+  - order
+  - coupon
+  - channel
+core_tables:
+  - dwd_user_event_di
+  - dwd_member_order_di
+  - dws_member_channel_conversion_1d
+  - ads_member_growth_dashboard_di
+core_metrics:
+  - member_growth.member_page_visit_uv
+  - member_growth.member_paid_user_count
+  - member_growth.member_payment_conversion_rate
+owners:
+  business_owner: growth_product_team
+  data_owner: growth_data_team

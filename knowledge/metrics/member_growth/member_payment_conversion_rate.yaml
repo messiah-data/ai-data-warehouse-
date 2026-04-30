@@ -1,0 +1,16 @@
+metric_id: member_growth.member_payment_conversion_rate
+display_name: 会员支付转化率
+domain: member_growth
+type: derived
+status: active
+description: 会员支付用户数 / 会员页访问UV
+formula: member_growth.member_paid_user_count / member_growth.member_page_visit_uv
+numerator: member_growth.member_paid_user_count
+denominator: member_growth.member_page_visit_uv
+dimensions:
+  - channel_id
+  - app_id
+  - app_version
+  - city_level
+owner: growth_data_team
+version: 1.0.0

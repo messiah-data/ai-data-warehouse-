@@ -1,0 +1,18 @@
+metric_id: trade.gmv
+display_name: GMV
+domain: trade
+type: atomic
+status: active
+description: 统计周期内有效支付订单的支付金额总和
+source_table: dwd_trade_order_di
+expression: sum(pay_amount)
+time_field: pay_time
+filters:
+  - order_status in ('PAID', 'FINISHED')
+  - is_test = 0
+dimensions:
+  - channel_id
+  - app_id
+  - province
+owner: trade_data_team
+version: 1.0.0
